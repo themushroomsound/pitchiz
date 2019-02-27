@@ -1,0 +1,15 @@
+-cp HaxeSource
+-dce full
+pitchiz.Pitchiz
+--each
+
+-js Javascript\Pitchiz.js
+--next
+
+-python Python\Pitchiz.py
+--next
+
+-cs CSharp\Pitchiz
+-D no-root
+-D net-ver=40
+-D real-position
