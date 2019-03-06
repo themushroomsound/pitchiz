@@ -1,6 +1,7 @@
 package pitchiz;
 
 // PITCHIZ
+@:expose
 @:keep
 class Pitchiz
 {
@@ -10,6 +11,7 @@ class Pitchiz
 }
 
 // CHROMA (a note, at any octave)
+@:expose
 @:keep
 class Chroma
 {
@@ -64,6 +66,7 @@ class Chroma
 }
 
 // NOTE (a chroma at a certain octave)
+@:expose
 @:keep
 class Note
 {
@@ -118,6 +121,7 @@ class Note
 }
 
 // MIDI KEY (a note, but relative to a keyboard, with a key index)
+@:expose
 @:keep
 class MIDIKey
 {
@@ -150,6 +154,7 @@ class MIDIKey
 }
 
 // KEYBOARD DEFINITION
+@:expose
 @:keep
 class MIDIKeyboard
 {
