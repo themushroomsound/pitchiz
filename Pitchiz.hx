@@ -120,6 +120,33 @@ class Note
     }
 }
 
+// Scale (a chroma + a mode)
+@:expose
+@:keep
+class Scale
+{
+    public var chroma(default, default):Chroma;
+    public var mode(default, default):Bool; // true -> major, false -> minor
+
+    public function new( chroma:Chroma, mode:Bool )
+    {
+        this.chroma = chroma;
+        this.mode = mode;
+    }
+
+    public function getCircle5thIndex():Int
+    {
+        var shift:Int = mode ? 0 : 3;
+        return ((chroma.index + shift) * 7) % 12 + 1;
+    }
+
+    public function toString():String
+    {
+        var min:String = mode ? "" : "m";
+        return chroma.toString() + min;
+    }
+}
+
 // MIDI KEY (a note, but relative to a keyboard, with a key index)
 @:expose
 @:keep
