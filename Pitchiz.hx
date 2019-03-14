@@ -49,6 +49,8 @@ class Chroma
     public function addInterval( interval:Int ):Chroma
     {
         var newIndex:Int = ( this.index + interval ) % 12;
+        // for some reason modulo fucks up (at least) in python, so:
+        if(newIndex < 0) newIndex += 12;
         return new Chroma( newIndex );
     }
 
@@ -127,6 +129,7 @@ class Scale
 {
     public var chroma(default, default):Chroma;
     public var mode(default, default):Bool; // true -> major, false -> minor
+    public var circle5thIndex(get, null):Int;
 
     public function new( chroma:Chroma, mode:Bool )
     {
@@ -134,16 +137,31 @@ class Scale
         this.mode = mode;
     }
 
-    public function getCircle5thIndex():Int
+    public function get_circle5thIndex():Int
     {
         var shift:Int = mode ? 0 : 3;
         return ((chroma.index + shift) * 7) % 12 + 1;
+    }
+
+    public function transpose(transposition:Int):Void
+    {
+        this.chroma = this.chroma.addInterval(transposition);
     }
 
     public function toString():String
     {
         var min:String = mode ? "" : "m";
         return chroma.toString() + min;
+    }
+
+    public function equals(other:Scale):Bool
+    {
+        return this.chroma.index == other.chroma.index && this.mode == other.mode;
+    }
+
+    public function isRelativeTo(other:Scale):Bool
+    {
+        return this.circle5thIndex == other.circle5thIndex && this.mode != other.mode;
     }
 }
 
