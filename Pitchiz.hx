@@ -143,9 +143,9 @@ class Scale
         return ((chroma.index + shift) * 7) % 12 + 1;
     }
 
-    public function transpose(transposition:Int):Void
+    public function transpose(transposition:Int):Scale
     {
-        this.chroma = this.chroma.addInterval(transposition);
+        return new Scale( this.chroma.addInterval(transposition), this.mode );
     }
 
     public function toString():String
