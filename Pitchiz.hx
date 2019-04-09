@@ -24,7 +24,7 @@ class Chroma
         var found:Bool = false;
         var index = -1;
         name = name.split("#").join("♯").split("b").join("♭");
-        name = name.split("D♯").join("E♭").split("A♯").join("B♭");
+        name = name.split("D♯").join("E♭").split("A♯").join("B♭").split("D♭").join("C♯").split("G♭").join("F♯").split("A♭").join("G♯");
         while(!found && index < Chroma.Names.length) {
             index++;
             found = name == Chroma.Names[ index ];
