@@ -163,6 +163,12 @@ class Scale
     {
         return this.circle5thIndex == other.circle5thIndex && this.mode != other.mode;
     }
+
+    public function is5thAwayFrom(other:Scale):Bool
+    {
+        var circle5thInterval:Int = Std.int(Math.abs(circle5thIndex - other.circle5thIndex));
+        return circle5thInterval == 1 || circle5thInterval == 11;
+    }
 }
 
 // MIDI KEY (a note, but relative to a keyboard, with a key index)
