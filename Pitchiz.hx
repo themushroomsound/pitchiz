@@ -129,7 +129,7 @@ class Scale
 {
     public var chroma(default, default):Chroma;
     public var mode(default, default):Bool; // true -> major, false -> minor
-    public var circle5thIndex(get, null):Int;
+    public var circle5thIndex(get, set):Int;
 
     public function new( chroma:Chroma, mode:Bool )
     {
@@ -137,10 +137,20 @@ class Scale
         this.mode = mode;
     }
 
+    // gets index of this scale on the circle of 5ths
+    // starting at index 1 /!\
     public function get_circle5thIndex():Int
     {
         var shift:Int = mode ? 0 : 3;
         return ((chroma.index + shift) * 7) % 12 + 1;
+    }
+
+    public function set_circle5thIndex(newCircle5thIndex:Int):Int
+    {
+        var shift:Int = mode ? 0 : 3;
+        var newChromaIndex:Int = (((newCircle5thIndex - 1) + shift) * 7) % 12;
+        chroma = new Chroma(newChromaIndex);
+        return newCircle5thIndex;
     }
 
     public function transpose(transposition:Int):Scale
